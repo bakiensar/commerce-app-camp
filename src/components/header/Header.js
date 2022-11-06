@@ -61,7 +61,7 @@ const Header = (props) => {
                 <div className="row">
                   <div className="col-lg-3 col-md-3 col-sm-3 col-xs-8">
                     <div className="logo">
-                      <a href="index.html">
+                      <a href="/">
                         <img src={headerlogo} alt="" />{' '}
                       </a>
                     </div>

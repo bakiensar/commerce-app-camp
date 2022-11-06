@@ -33,6 +33,9 @@ function App(props) {
           <Route path="/category">
             <Route path=":categoryCode" element={<CategoryDetail />} />
           </Route>
+          <Route path="/product">
+            <Route path=":productCode" element={<CategoryDetail />} />
+          </Route>
         </Routes>
       </BrowserRouter>
       ,
