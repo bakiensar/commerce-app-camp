@@ -13,7 +13,7 @@ const CategoryItem = (props) => {
         </div>
         <div className="product-content">
           <h5>
-            <a href={props.slug} className="product-title">
+            <a href={'/product/' + props.code} className="product-title">
               {props.name} <strong>(128GB, Black)</strong>
             </a>
           </h5>

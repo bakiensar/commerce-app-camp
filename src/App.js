@@ -9,6 +9,7 @@ import React from 'react'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import { connect } from 'react-redux'
+import ProductDetail from './pages/category/ProductDetail'
 
 function App(props) {
   console.log('APPPROPS::', props)
@@ -34,7 +35,7 @@ function App(props) {
             <Route path=":categoryCode" element={<CategoryDetail />} />
           </Route>
           <Route path="/product">
-            <Route path=":productCode" element={<CategoryDetail />} />
+            <Route path=":productCode" element={<ProductDetail />} />
           </Route>
         </Routes>
       </BrowserRouter>

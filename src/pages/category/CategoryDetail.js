@@ -39,7 +39,7 @@ const CategoryDetail = (props) => {
         key={index}
         name={item.name}
         images={item.images}
-        slug={item.slug}
+        code={item.code}
       />,
     )
   })
