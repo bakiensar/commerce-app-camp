@@ -8,6 +8,8 @@ import CategoryList from './pages/category/CategoryList'
 import CategoryDetail from './pages/category/CategoryDetail'
 import Home from './pages/home/Home'
 import React from 'react'
+import Login from './pages/Login'
+import Register from './pages/Register'
 
 function App() {
   const api = useApi()
@@ -26,6 +28,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/category">
             <Route path=":categoryId" element={<CategoryDetail />} />
           </Route>

@@ -6,9 +6,9 @@ export const useApi = () => {
 
   const token = localStorage.getItem('token')
 
-  axios.defaults.headers.common['accept'] = 'application/json'
+  // axios.defaults.headers.common['accept'] = 'application/json'
   axios.defaults.headers.common['accept-language'] = 'en_US'
-  axios.defaults.headers.common['content-type'] = 'application/json'
+  //axios.defaults.headers.common['content-type'] = 'application/json'
 
   if (token) {
     axios.defaults.headers.common['Authorization'] = token

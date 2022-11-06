@@ -17,6 +17,7 @@ const Header = () => {
         console.log('shopTAXONRESP:::', response)
         setCategories(response.data['hydra:member'])
       })
+
       .catch((err) => {
         console.log('TAXONSERR::', err)
       })
@@ -82,13 +83,13 @@ const Header = () => {
                     <div className="account-section">
                       <ul>
                         <li>
-                          <a href="#" className="title hidden-xs">
-                            My Account
+                          <a href="/login" className="title hidden-xs">
+                            LOGIN
                           </a>
                         </li>
                         <li className="hidden-xs">|</li>
                         <li>
-                          <a href="#" className="title hidden-xs">
+                          <a href="/register" className="title hidden-xs">
                             Register
                           </a>
                         </li>
