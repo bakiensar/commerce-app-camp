@@ -2,16 +2,16 @@ import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Header from './components/header/Header'
 import useApi from './hooks/useApi'
-
 import Footer from './components/footer/Footer'
-import CategoryList from './pages/category/CategoryList'
 import CategoryDetail from './pages/category/CategoryDetail'
 import Home from './pages/home/Home'
 import React from 'react'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import { connect } from 'react-redux'
 
-function App() {
+function App(props) {
+  console.log('APPPROPS::', props)
   const api = useApi()
 
   api
@@ -31,7 +31,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/category">
-            <Route path=":categoryId" element={<CategoryDetail />} />
+            <Route path=":categoryCode" element={<CategoryDetail />} />
           </Route>
         </Routes>
       </BrowserRouter>
@@ -41,4 +41,8 @@ function App() {
   )
 }
 
-export default App
+const maptoProps = (state) => {
+  return { ...state }
+}
+
+export default connect(maptoProps)(App)

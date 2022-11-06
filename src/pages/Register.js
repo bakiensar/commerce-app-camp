@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { applyMiddleware } from 'redux'
 import useApi from '../hooks/useApi'
 
@@ -10,6 +11,7 @@ const Register = () => {
   const [subscribedToNewsletter, setSubscribedToNewsletter] = useState(false)
 
   const api = useApi()
+  const navigate = useNavigate()
 
   const onRegisterClick = () => {
     const postData = {
@@ -26,6 +28,9 @@ const Register = () => {
       .then((response) => console.log('POSTRESPONSE>>', response))
       .catch((err) => {
         console.log('POSTERR', err)
+      })
+      .finally(() => {
+        navigate('/login')
       })
   }
 

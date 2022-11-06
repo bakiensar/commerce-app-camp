@@ -1,6 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { connect } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import useApi from '../hooks/useApi'
+import { SET_TOKEN } from '../redux/reducers/tokenReducer'
 
-const Login = () => {
+const Login = (props) => {
+  const navigate = useNavigate()
+  const api = useApi()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const onLogClick = () => {
+    const logPostData = {
+      email,
+      password,
+    }
+    console.log('logPostData', logPostData)
+    api
+      .post('shop/authentication-token', logPostData)
+      .then((response) => {
+        console.log('tokenpost', response)
+        props.dispatch({
+          type: SET_TOKEN,
+          payload: { token: response.data.token },
+        })
+        navigate('/')
+      })
+      .catch((err) => console.log('logerr', err))
+  }
+
   return (
     <div className="row">
       <div className="col-lg-offset-1 col-lg-5 col-md-offset-1 col-md-5 col-sm-12 col-xs-12 ">
@@ -10,12 +38,17 @@ const Login = () => {
               <h3 className="mb10">Login</h3>
             </div>
 
-            <form>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault()
+              }}
+            >
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div className="form-group">
                   <label className="control-label sr-only" for="email"></label>
                   <div className="login-input">
                     <input
+                      onChange={(e) => setEmail(e.target.value)}
                       id="email"
                       name="emaol"
                       type="text"
@@ -34,6 +67,7 @@ const Login = () => {
                   <label className="control-label sr-only"></label>
                   <div className="login-input">
                     <input
+                      onChange={(e) => setPassword(e.target.value)}
                       name="password"
                       type="password"
                       className="form-control"
@@ -50,7 +84,10 @@ const Login = () => {
                 </div>
               </div>
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb20 ">
-                <button className="btn btn-primary btn-block mb10">
+                <button
+                  onClick={onLogClick}
+                  className="btn btn-primary btn-block mb10"
+                >
                   Login
                 </button>
               </div>
@@ -120,5 +157,7 @@ const Login = () => {
     </div>
   )
 }
-
-export default Login
+const maptoProps = (state) => {
+  return { ...state }
+}
+export default connect(maptoProps)(Login)

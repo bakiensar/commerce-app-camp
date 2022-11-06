@@ -3,8 +3,9 @@ import headerlogo from './assets/logoheader.png'
 import useApi from '../../hooks/useApi'
 import { useEffect } from 'react'
 import MenuItem from './components/menu-item'
+import { connect } from 'react-redux'
 
-const Header = () => {
+const Header = (props) => {
   const [categories, setCategories] = useState(null)
   const api = useApi()
   console.log('CATEGORİES:::', categories)
@@ -125,4 +126,7 @@ const Header = () => {
   )
 }
 
-export default Header
+const maptoProps = (state) => {
+  return { ...state }
+}
+export default connect(maptoProps)(Header)
