@@ -11,8 +11,13 @@ const CategoryDetail = (props) => {
   const [categoryDetail, setCategoryDetail] = useState(null)
 
   useEffect(() => {
+    const queryData = {}
+    queryData['productTaxons.taxon.code'] = params.categoryCode
+
+    //api.get("shop/products?productTaxons.taxon.code="+params.categoryCode)
+
     api
-      .get(`shop/products/${params.categoryCode}`)
+      .get(`shop/products`, { params: queryData })
       .then((response) => {
         console.log('categorydetailRESPONSE', response)
       })
