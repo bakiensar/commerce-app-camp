@@ -1,3 +1,6 @@
+![commercegif](React App - Google Chrome 2022-11-07 17-51-20.gif)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
