@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import { connect } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import useApi from '../../hooks/useApi'
+import { SET_CART } from '../../redux/reducers/cartReducer'
 
 const ProductDetail = (props) => {
   const params = useParams()
@@ -8,6 +10,47 @@ const ProductDetail = (props) => {
   console.log('productdetailparams', params)
 
   const [productDetail, setProductDetail] = useState(null)
+
+  const addItemToCart = (tokenValue) => {
+    const postData = {
+      productVariant: productDetail.defaultVariant,
+      quantity: 1,
+    }
+    api
+      .post(`shop/orders/${tokenValue}/items`, postData)
+      .then((response) => {
+        console.log('addItemTocartresponse>>', response)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  const onAddToCartClick = () => {
+    console.log(productDetail)
+    console.log('productdetailPROPS::', props)
+    const tokenValue = ''
+    if (props.cartState === null) {
+      const postData = {
+        localeCode: 'en_US',
+      }
+      api
+        .post('shop/orders', postData)
+        .then((response) => {
+          console.log('createCartRESP::', response)
+          props.dispatch({
+            type: SET_CART,
+            payload: response.data,
+          })
+          addItemToCart(response.data.tokenValue)
+        })
+        .catch((err) => {
+          console.log('createCartERR::', err)
+        })
+    } else {
+      addItemToCart(props.cartState.tokenValue)
+    }
+  }
 
   useEffect(() => {
     api
@@ -84,7 +127,11 @@ const ProductDetail = (props) => {
                           />
                         </div>
                       </div>
-                      <button type="submit" className="btn btn-default">
+                      <button
+                        onClick={onAddToCartClick}
+                        type="button"
+                        className="btn btn-default"
+                      >
                         <i className="fa fa-shopping-cart"></i>&nbsp;Add to cart
                       </button>
                     </div>
@@ -577,4 +624,8 @@ const ProductDetail = (props) => {
   )
 }
 
-export default ProductDetail
+const mapStateToProps = (state) => {
+  return { ...state }
+}
+
+export default connect(mapStateToProps)(ProductDetail)

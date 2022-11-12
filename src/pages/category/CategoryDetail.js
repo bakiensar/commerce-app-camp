@@ -6,7 +6,7 @@ import CategoryItem from './CategoryItem'
 const CategoryDetail = (props) => {
   console.log('detailprops', props)
   const params = useParams()
-  console.log('params', params)
+  console.log('DETAİL CATEGORYCODE params', params)
   const api = useApi()
 
   const [categoryDetail, setCategoryDetail] = useState(null)
@@ -17,7 +17,7 @@ const CategoryDetail = (props) => {
     const queryData = {}
     queryData['productTaxons.taxon.code'] = params.categoryCode
 
-    //api.get("shop/products?productTaxons.taxon.code="+params.categoryCode)
+    //api.get('shop/products?productTaxons.taxon.code=' + params.categoryCode)
 
     api
       .get(`shop/products`, { params: queryData })
