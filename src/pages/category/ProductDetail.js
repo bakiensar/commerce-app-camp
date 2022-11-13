@@ -20,6 +20,10 @@ const ProductDetail = (props) => {
       .post(`shop/orders/${tokenValue}/items`, postData)
       .then((response) => {
         console.log('addItemTocartresponse>>', response)
+        props.dispatch({
+          type: SET_CART,
+          payload: response.data,
+        })
       })
       .catch((err) => {
         console.log(err)
@@ -30,6 +34,7 @@ const ProductDetail = (props) => {
     console.log(productDetail)
     console.log('productdetailPROPS::', props)
     const tokenValue = ''
+
     if (props.cartState === null) {
       const postData = {
         localeCode: 'en_US',

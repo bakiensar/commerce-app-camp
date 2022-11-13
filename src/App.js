@@ -10,6 +10,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import { connect } from 'react-redux'
 import ProductDetail from './pages/category/ProductDetail'
+import Cart from './pages/cart/Cart'
 
 function App(props) {
   console.log('APPPROPS::', props)
@@ -31,6 +32,7 @@ function App(props) {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/cart" element={<Cart />} />
           <Route path="/category">
             <Route path=":categoryCode" element={<CategoryDetail />} />
           </Route>

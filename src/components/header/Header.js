@@ -6,6 +6,7 @@ import MenuItem from './components/menu-item'
 import { connect } from 'react-redux'
 
 const Header = (props) => {
+  console.log('HeaderProps>>', props)
   const [categories, setCategories] = useState(null)
   const api = useApi()
   console.log('CATEGORİES:::', categories)
@@ -95,9 +96,11 @@ const Header = (props) => {
                           </a>
                         </li>
                         <li>
-                          <a href="#" className="title">
+                          <a href="/cart" className="title">
                             <i className="fa fa-shopping-cart"></i>{' '}
-                            <sup className="cart-quantity">1</sup>
+                            <sup className="cart-quantity">
+                              {props.cartState ? props.cartState.itemsCount : 0}
+                            </sup>
                           </a>
                         </li>
                       </ul>
